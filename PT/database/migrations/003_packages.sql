@@ -1,0 +1,16 @@
+USE isp_management;
+
+CREATE TABLE IF NOT EXISTS packages (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    code VARCHAR(50) NOT NULL,
+    speed INT UNSIGNED NOT NULL,
+    speed_unit VARCHAR(20) NOT NULL DEFAULT 'Mbps',
+    price DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    description TEXT DEFAULT NULL,
+    status ENUM('active','inactive') NOT NULL DEFAULT 'active',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_package_code (code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
